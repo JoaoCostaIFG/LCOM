@@ -1,0 +1,87 @@
+@lcflib.a:2019, lcf_start
+  video_test_xpm(xpm, x, y)
+> video_test_xpm(0x81b061c, 10, 10)
+  @lab5test.c:164, test_video_xpm
+    vg_init(0x105)
+  > vg_init(0x105)
+    @vg_utils.c:36, vbe_get_modeinfo
+      lm_alloc(sizeof(vbe_mode_info_t), &buf)
+    < lm_alloc(256, addr: 0xeffff408 [phys: 0x0008f000, virt: 0xefb8c000, size: 256 bytes]) -> (ret: 0xefb8c000)
+    @vg_utils.c:54, vbe_get_modeinfo
+      sys_int86(&reg86)
+    > sys_int86(addr: 0xeffff3e0 [AX: 4f01, BX: 0000, CX: 0105, DX: 0000, ES: 8000, DI: f000])
+    < sys_int86(addr: 0xeffff3e0 [AX: 004f, BX: 0000, CX: 0105, DX: 0000, ES: 8000, DI: f000]) -> (ret: 0)
+    @vg_utils.c:67, vbe_get_modeinfo
+      lm_free(&buf)
+    < lm_free(addr: 0xeffff408 [phys: 0x0008f000, virt: 0xefb8c000, size: 256 bytes]) -> (ret: 1)
+    @vg_utils.c:17, privctl
+      sys_privctl(SELF, SYS_PRIV_ADD_MEM, &mr)
+    > sys_privctl(SELF, SYS_PRIV_ADD_MEM, addr: 0xeffff548 [0xe0000000 - 0xe00c0000 <768 KiB>])
+    < sys_privctl(SELF, SYS_PRIV_ADD_MEM, &mr) -> (ret: 0)
+    @vg.c:132, vg_init
+      vm_map_phys(SELF, (void *)physbaseptr, vram_size)
+    < vm_map_phys(SELF, addr: 0xe0000000, 768 KiB) -> (ret: 0xef93b000)
+    @vg_utils.c:17, privctl
+      sys_privctl(SELF, SYS_PRIV_ADD_MEM, &mr)
+    > sys_privctl(SELF, SYS_PRIV_ADD_MEM, addr: 0xeffff520 [0x00000000 - 0x00100000 <1 MiB>])
+    < sys_privctl(SELF, SYS_PRIV_ADD_MEM, &mr) -> (ret: 0)
+    @vg_utils.c:91, vbe_set_mode
+      sys_int86(&reg86)
+    > sys_int86(addr: 0xeffff520 [AX: 4f02, BX: 4105, CX: 0000, DX: 0000, ES: 0000, DI: 0000])
+    < sys_int86(addr: 0xeffff520 [AX: 004f, BX: 4105, CX: 0000, DX: 0000, ES: 0000, DI: 0000]) -> (ret: 0)
+  < vg_init(0x105) -> (ret: 0xef93b000)
+  @vg.c:181, vg_load_sprite
+    printf("%s\n", xpm[0])
+    "ÂëÊëÎëÓë×ëÜëàëäëèëìëðëðë1ìrì³ìôì5íví·íøí9îzî»îüî=ï~ï¿ï"
+  @vg.c:183, vg_load_sprite
+    xom_load(*xpm, XPM_INDEXED, img)
+  > xom_load(addr: 0x81b061c, XPM_INDEXED, addr: 0xeffff650)
+  < xom_load(addr: 0x81b061c, XPM_INDEXED, addr: 0xeffff650 [64x64 : 4096bytes]) -> (ret: 0x821f000)
+  @utils.c:27, subscribe_int
+    sys_irqsetpolicy(irq_line, policy, bit_no)
+  > sys_irqsetpolicy(1, 3, addr: 0xeffff618 [1])
+  < sys_irqsetpolicy(1, 3, addr: 0xeffff618 [10]) -> (ret: 0)
+  @utils.c:151, wait_for_keypress
+    driver_receive(ANY, &msg, &ipc_status)
+  > driver_receive(ANY, addr: 0xeffff5d0, addr: 0xeffff614)
+  < driver_receive(<[HARDWARE: 0b0000000000000000000000000000000000000000000000000000000000000010]>)
+  @utils.c:93, util_sys_inb
+    sys_inb(port, &byte)
+  > sys_inb(0x64, addr: 0xeffff588)
+  < sys_inb(0x64, addr: 0xeffff588 [0x1d = 0b00011101])
+  @utils.c:162, wait_for_keypress
+    kbc_ih()
+    @utils.c:93, util_sys_inb
+      sys_inb(port, &byte)
+    > sys_inb(0x64, addr: 0xeffff4f0)
+    < sys_inb(0x64, addr: 0xeffff4f0 [0x1d = 0b00011101])
+    @utils.c:93, util_sys_inb
+      sys_inb(port, &byte)
+    > sys_inb(0x60, addr: 0xeffff4f0)
+    < sys_inb(0x60, addr: 0xeffff4f0 [0x01 = 0b00000001])
+  @utils.c:151, wait_for_keypress
+    driver_receive(ANY, &msg, &ipc_status)
+  > driver_receive(ANY, addr: 0xeffff5d0, addr: 0xeffff614)
+  < driver_receive(<[HARDWARE: 0b0000000000000000000000000000000000000000000000000000000000000010]>)
+  @utils.c:93, util_sys_inb
+    sys_inb(port, &byte)
+  > sys_inb(0x64, addr: 0xeffff588)
+  < sys_inb(0x64, addr: 0xeffff588 [0x1d = 0b00011101])
+  @utils.c:162, wait_for_keypress
+    kbc_ih()
+    @utils.c:93, util_sys_inb
+      sys_inb(port, &byte)
+    > sys_inb(0x64, addr: 0xeffff4f0)
+    < sys_inb(0x64, addr: 0xeffff4f0 [0x1d = 0b00011101])
+    @utils.c:93, util_sys_inb
+      sys_inb(port, &byte)
+    > sys_inb(0x60, addr: 0xeffff4f0)
+    < sys_inb(0x60, addr: 0xeffff4f0 [0x81 = 0b10000001])
+  @utils.c:36, unsubscribe_int
+    sys_irqrmpolicy(hook_id)
+  > sys_irqrmpolicy(addr: 0xeffff618 [10])
+  < sys_irqrmpolicy(addr: 0xeffff618 [10]) -> (ret: 0)
+  @lab5test.c:182, test_video_xpm
+    vg_exit()
+  < vg_exit() -> (ret: 0)
+< video_test_xpm(0x81b061c, 10, 10) -> (ret: 0)

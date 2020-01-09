@@ -1,0 +1,19 @@
+# Init
+svn import --username "" dir https://svn.fe.up.pt/repos/lcom1920-t4g07 
+-m ""
+
+# Clone
+svn checkout --username "" url/folder ./folder --force
+
+# Delete file
+svn delete file
+
+# Revert file (only reverts if no commit as been made deleting that file 
+yet)
+svn revert file
+
+# Commit
+svn commit -m ""
+
+# fetch + pull
+svn update

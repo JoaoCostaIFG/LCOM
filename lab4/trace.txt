@@ -1,0 +1,6 @@
+@lcflib.a:2019, lcf_start
+  mouse_test_packet(cnt)
+> mouse_test_packet(2)
+  @mouse.c:30, mouse_packet
+    driver_receive(ANY, &msg, &ipc_status)
+  > driver_receive(ANY, addr: 0xeffff6a0, addr: 0xeffff6ec)
